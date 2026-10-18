@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffcb05">
+    <meta name="description" content="Explora Pokémon usando datos de PokéAPI.">
+    <title>Pokédex Pokémon</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/app.js" defer></script>
+</head>
+
+<body>
+    <main class="contenedor">
+        <header class="encabezado">
+            <div class="barra-superior">
+                <a class="marca" href="#inicio" aria-label="Pokémon, inicio">
+                    <img class="logo-pokemon"
+                        src="https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pok%C3%A9mon_logo.svg"
+                        alt="Pokémon">
+                </a>
+                <span class="sello"><span class="punto-vivo"></span> EXPLORADOR POKÉDEX</span>
+            </div>
+            <div class="hero" id="inicio">
+                <div class="hero-texto">
+                    <p class="etiqueta">¡TU AVENTURA COMIENZA AQUÍ!</p>
+                    <h1>Encuentra a tu<br><span>Pokémon favorito</span></h1>
+                    <p class="descripcion">
+                        Busca por nombre o número y descubre sus datos directamente desde PokéAPI.
+                    </p>
+                </div>
+                <div class="hero-deco" aria-hidden="true">
+                    <span class="estrella estrella-uno">✦</span>
+                    <span class="estrella estrella-dos">✧</span>
+                    <span class="pokeball-grande"><i></i></span>
+                </div>
+            </div>
+        </header>
+
+        <form id="formulario" class="buscador">
+            <div class="titulo-buscador">
+                <span class="icono-busqueda" aria-hidden="true">⌕</span>
+                <div>
+                    <h2>¿A quién buscamos?</h2>
+                    <p>Escribe un nombre o número de la Pokédex</p>
+                </div>
+            </div>
+
+            <div class="fila-busqueda">
+                <input id="pokemon" type="search" placeholder="Ejemplo: pikachu o 25" required>
+                <button type="submit">¡Buscar! <span aria-hidden="true">→</span></button>
+            </div>
+
+            <div class="buscador-pie">
+                <div class="sugerencias">
+                    <span>PRUEBA:</span>
+                    <button type="button" class="chip-busqueda" data-query="pikachu">Pikachu</button>
+                    <button type="button" class="chip-busqueda" data-query="bulbasaur">Bulbasaur</button>
+                    <button type="button" class="chip-busqueda" data-query="charizard">Charizard</button>
+                </div>
+                <label class="selector-metodo" for="metodo">
+                    <span>Método</span>
+                    <select id="metodo">
+                        <option value="async">async / await</option>
+                        <option value="promesas">then / catch</option>
+                    </select>
+                </label>
+            </div>
+        </form>
+
+        <p id="mensaje" class="mensaje" aria-live="polite">Escribe un Pokémon para comenzar.</p>
+
+        <section class="zona-resultados">
+            <div class="zona-titulo">
+                <div><p class="etiqueta">RESULTADO</p><h2>Tu descubrimiento</h2></div>
+                <span class="mini-pokeball" aria-hidden="true"></span>
+            </div>
+            <div class="metricas" aria-label="Datos de la petición">
+                <div><span>ESTADO HTTP</span><strong id="estado">—</strong></div>
+                <div><span>TIEMPO DE RESPUESTA</span><strong><span id="tiempo">—</span> <small>ms</small></strong></div>
+                <div class="contenido"><span>TIPO DE CONTENIDO</span><strong id="tipo-contenido">—</strong></div>
+            </div>
+
+            <section id="resultado" class="resultado" aria-live="polite">
+                <div class="estado-vacio">
+                    <div class="pokeball-vacia"><i></i></div>
+                    <p>¡Tu próxima aventura te espera!</p>
+                    <span>Busca un Pokémon para ver su ficha.</span>
+                </div>
+            </section>
+        </section>
+
+        <section class="json-seccion">
+            <div class="json-titulo">
+                <div><p class="etiqueta">LABORATORIO DE PETICIONES</p><h2>Inspecciona la consulta</h2></div>
+                <span class="json-tag">API v2</span>
+            </div>
+            <div class="pestanas" role="tablist" aria-label="Visor de respuesta y código">
+                <button class="pestana activa" id="tab-json" type="button" role="tab"
+                    aria-selected="true" aria-controls="panel-json" data-panel="json">Respuesta JSON</button>
+                <button class="pestana" id="tab-codigo" type="button" role="tab"
+                    aria-selected="false" aria-controls="panel-codigo" data-panel="codigo">Código ejecutado</button>
+            </div>
+            <div id="panel-json" class="panel-inspector" role="tabpanel" aria-labelledby="tab-json">
+                <pre id="json">// Aquí aparecerá la respuesta JSON de la API.</pre>
+            </div>
+            <div id="panel-codigo" class="panel-inspector" role="tabpanel" aria-labelledby="tab-codigo" hidden>
+                <pre id="visor-codigo">Selecciona un método y realiza una consulta para ver el código.</pre>
+            </div>
+        </section>
+
+        <footer>
+            <span>Hecho para entrenadores curiosos</span>
+            <span class="footer-separador">•</span>
+            <a href="https://pokeapi.co/docs/v2" target="_blank" rel="noreferrer">Datos de PokéAPI ↗</a>
+        </footer>
+    </main>
+</body>
+
+</html>
